@@ -1,0 +1,176 @@
+html,
+body {
+  margin: 1%;
+  padding: 0;
+  background-color: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#logo {
+  margin-top: 42px;
+  margin-bottom: 17px;
+  height: 93px;
+  width: 268px;
+}
+
+.barSearch {
+  width: 100%;
+  height: 69px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#searchbar {
+  width: 100%;
+  height: 69px;
+  background-color: #e7e7e7;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+.fa-magnifying-glass {
+  font-size: 32px;
+  position: absolute;
+  right: 4%;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  width: 540px;
+}
+
+.btn {
+  display: flex;
+  flex-direction: col;
+  margin-top: 20px;
+  width: 170px;
+  height: 69px;
+}
+
+button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  font-size: 18px;
+}
+
+#ingredient {
+  background-color: #3282f7;
+  margin: 0px;
+}
+
+#device {
+  background-color: #68d9a4;
+}
+
+#ustensil {
+  background-color: #ed6454;
+}
+
+.filterIcon {
+  color: white;
+  font-size: 30px;
+  left: 30px;
+  transform: rotate(90deg);
+}
+
+/* Receipes */
+#receipesList {
+  width: 100%;
+  height: auto;
+  margin: 30px auto;
+  font-size: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 380px);
+  justify-content: space-between;
+  grid-gap: 10px;
+}
+
+.receipeCard {
+  flex-shrink: 1;
+  flex-wrap: wrap;
+  width: auto;
+  height: 364px;
+}
+
+.receipeCard .img {
+  width: 100%;
+  height: 50%;
+  background-color: darkgray;
+}
+
+.cardDescription {
+  height: 50%;
+  padding-left: 3%;
+  background-color: lightgray;
+}
+
+.cardTitleTime {
+  display: flex;
+  justify-content: space-between;
+  background-color: lightgray;
+  font-family: 'Lato', sans-serif;
+}
+
+.cardTitleTime h2 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.cardTitleTime .mealTimeLogo {
+  display: flex;
+  align-items: center;
+  right: 0px;
+  font-size: 18px;
+  font-weight: 700;
+  color: black;
+}
+
+.mealTime {
+  margin: 0px 20px 0px 5px;
+}
+
+.cardIngredientDescription {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 130px;
+}
+
+.ingredient {
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  width: 42%;
+  padding-top: 13px;
+}
+
+.cardDescription .cardIngredientDescription .mealDescription {
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  margin-right: 20px;
+  width: 171px;
+  height: 109px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}

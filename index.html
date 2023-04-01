@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/69c2adeeec.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Les petits plats</title>
+  </head>
+  <body>
+    <header>
+      <img src="./asset/ logoLesPetitsPlats.png" id="logo" alt="logo" />
+
+      <div class="barSearch">
+        <input
+          id="searchbar"
+          onkeyup="search_receipe()"
+          type="text"
+          name="search"
+          placeholder="Rechercher une recette.."
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </header>
+
+    <div class="filters">
+      <div class="btn">
+        <button id="ingredient">
+          Ingredients
+          <div class="filterIcon">&lsaquo;</div>
+        </button>
+      </div>
+
+      <div class="btn">
+        <button id="device">
+          Appareils
+          <div class="filterIcon">&lsaquo;</div>
+        </button>
+      </div>
+
+      <div class="btn">
+        <button id="ustensil">
+          Ustensiles
+          <div class="filterIcon">&lsaquo;</div>
+        </button>
+      </div>
+    </div>
+    <section id="receipesList"></section>
+    <script type="module" src="/scripts/pages/meal.js"></script>
+    <script type="module" src="/scripts/factories/mealFactory.js"></script>
+  </body>
+</html>
