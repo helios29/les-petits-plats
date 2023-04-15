@@ -1,10 +1,10 @@
 export function receipeFactory(data) {
   const { name, ingredients, quantity, unit, time, description } = data;
 
-  console.log(data.ingredients);
+  // console.log("@@@@@@@@@@@@Data : ", data.appliance);
 
   function getUserCardDOM() {
-    console.log('data.ingredient dans UsercardDom: ', ingredients);
+    // console.log('data.ingredient dans UsercardDom: ', ingredients);
 
     const receipeCard = document.createElement('div');
     receipeCard.classList.add('receipeCard');

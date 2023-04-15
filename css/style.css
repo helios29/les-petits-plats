@@ -113,25 +113,26 @@ button {
 .receipeCard .img {
   width: 100%;
   height: 50%;
-  background-color: darkgray;
+  background-color: rgb(49, 57, 57);
 }
 
 .cardDescription {
   height: 50%;
   padding-left: 3%;
-  background-color: lightgray;
+  background-color: rgb(23, 23, 23);
 }
 
 .cardTitleTime {
   display: flex;
   justify-content: space-between;
-  background-color: lightgray;
+  background-color: rgb(23, 23, 23);
   font-family: 'Lato', sans-serif;
 }
 
 .cardTitleTime h2 {
   font-size: 16px;
   font-weight: 400;
+  color: white;
 }
 
 .cardTitleTime .mealTimeLogo {
@@ -140,7 +141,7 @@ button {
   right: 0px;
   font-size: 18px;
   font-weight: 700;
-  color: black;
+  color: white;
 }
 
 .mealTime {
@@ -155,7 +156,7 @@ button {
 }
 
 .ingredient {
-  color: black;
+  color: white;
   font-family: 'Lato', sans-serif;
   font-size: 12px;
   width: 42%;
@@ -163,7 +164,7 @@ button {
 }
 
 .cardDescription .cardIngredientDescription .mealDescription {
-  color: black;
+  color: white;
   font-family: 'Roboto', sans-serif;
   font-size: 12px;
   margin-right: 20px;
@@ -173,4 +174,13 @@ button {
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
+}
+
+button {
+  cursor: pointer;
+}
+
+.rotate {
+  transform: rotate(-90deg);
+  /* margin-left: -21px; */
 }
