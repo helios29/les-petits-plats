@@ -17,8 +17,8 @@ function ingredientButton() {
   // }
 }
 
-const btnBlueClicked = document.getElementById('ingredient');
-btnBlueClicked.addEventListener('click', ingredientButton);
+// const btnBlueClicked = document.getElementById('ingredient');
+// btnBlueClicked.addEventListener('click', ingredientButton);
 
 // const filterBtn = document.getElementById('filterBtn');
 // const list = document.getElementById('nav__links');

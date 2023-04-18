@@ -34,33 +34,70 @@
     </header>
 
     <div class="filters">
-      <div class="btn">
-        <button id="ingredient">
-          Ingredients
-          <div class="filterIcon">&lsaquo;</div>
-          <ul class="choice"></ul>
-        </button>
+      <div class="filterElement ingredient">
+        <input
+        id="Ingrédients"
+        class="buttonBarSearch close"
+        type="button"
+        name="ingredient"
+        value="Ingrédients"
+        placeholder="Rechercher un ingrédient..."
+      />
+      <div class="filterIcon">&lsaquo;</div>
+      <ul class="choice" style="display: none"></ul>
+    </div>
+      
+      <div class="filterElement device">
+        <input
+          id="Appareils"
+          class="buttonBarSearch close"
+          type="button"
+          name="device"
+          value="Appareils"
+          placeholder="Rechercher un appareil..."
+        />
+        <div class="filterIcon">&lsaquo;</div>
+        <ul class="choice" style="display: none"></ul>
       </div>
-
-      <div class="btn">
-        <button id="device">
-          Appareils
-          <div class="filterIcon">&lsaquo;</div>
-          <ul class="choice"></ul>
-        </button>
+      
+      <div class="filterElement ustensil">
+        <input
+          id="Ustensils"
+          class="buttonBarSearch close"
+          type="button"
+          name="ustensil"
+          value="Ustensils"
+          placeholder="Rechercher un ustensil..."
+        />
+        <div class="filterIcon">&lsaquo;</div>
+        <ul class="choice" style="display: none"></ul>
       </div>
+      
+      
+      <!-- <button id="ingredient" class="close">
+        Ingredients
+        <div class="filterIcon">&lsaquo;</div>
+        <ul class="choice" style="display: none"></ul>
+      </button>
 
-      <div class="btn">
-        <button id="ustensil">
+      <button id="device" class="close">
+        Appareils
+        <div class="filterIcon">&lsaquo;</div>
+        <ul class="choice" style="display: none"></ul>
+      </button> -->
+        
+    
+
+      <!-- <button id="ustensil" class="close">
           Ustensiles
           <div class="filterIcon">&lsaquo;</div>
-          <ul class="choice"></ul>
-        </button>
-      </div>
+          <ul class="choice" style="display: none;"></ul>
+        </button> -->
     </div>
     <section id="receipesList"></section>
     <script type="module" src="/scripts/pages/meal.js"></script>
     <script type="module" src="/scripts/factories/mealFactory.js"></script>
+    <script type="module" src="/scripts/factories/buttonFactory.js"></script>
     <script type="module" src="/scripts/utils/search.js"></script>
     <script type="module" src="/scripts/utils/buttons.js"></script>
   </body>

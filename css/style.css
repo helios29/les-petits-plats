@@ -33,8 +33,9 @@ header {
 
 #searchbar {
   width: 100%;
+  font-size: 32px;
   height: 69px;
-  background-color: #e7e7e7;
+  background-color: #a9a5a580;
   padding: 15px;
   border-radius: 5px;
   border: none;
@@ -48,47 +49,112 @@ header {
 
 .filters {
   display: flex;
-  justify-content: space-between;
-  width: 540px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  gap: 5%;
+  margin-top: 1%;
 }
 
-.btn {
+/* .btn {
   display: flex;
-  flex-direction: col;
+  flex-direction: column;
   margin-top: 20px;
   width: 170px;
-  height: 69px;
+  height: auto;
+} */
+
+
+
+ul {
+  position: absolute;
+  list-style-type: none;
+  list-style: none;
+  bottom: -300%;
+  left: 0%;
+  /* padding-right: 15px; */
+  height: 200px;
+  width: 554px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  color: white;
+  border-radius: 5px;
+  padding-top: 25px;
+  overflow: auto;
+  text-align: left;
+  word-wrap: break-word;
+  cursor: pointer;
 }
 
-button {
+li {
+  word-wrap: break-word;
+  font-size: 18px;
+}
+
+li:hover{
+  opacity: 0.5;
+}
+
+#Ingrédients {
+  background-color: #3282f7;
+  margin: 0px;
+  padding-left: 15px;
+}
+.ingredient ul {
+  background-color: #3282f7;
+  display: none;
+}
+
+#Appareils {
+  background-color: #68d9a4;
+  padding-left: 15px;
+}
+
+.device ul {
+  background-color: #68d9a4;
+  display: none;
+}
+
+#Ustensils {
+  background-color: #ed6454;
+}
+
+.ustensil ul {
+  background-color: #ed6454;
+  display: none;
+}
+
+.filterElement{
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  position: relative;
+}
+
+.buttonBarSearch {
+  display: flex;
   align-items: center;
-  width: 100%;
+  padding-left: 15px;
+  width: 200px;
+  height: 70px;
   border-radius: 5px;
   color: white;
   border: none;
   font-size: 18px;
+  cursor: pointer;
+
 }
 
-#ingredient {
-  background-color: #3282f7;
-  margin: 0px;
-}
-
-#device {
-  background-color: #68d9a4;
-}
-
-#ustensil {
-  background-color: #ed6454;
-}
 
 .filterIcon {
+  position: absolute;
   color: white;
   font-size: 30px;
-  left: 30px;
-  transform: rotate(90deg);
+  right: 40px;
+  bottom: 27px; 
+  width: 0px;
+  height: 0px;
+  transform: rotate(-90deg);
 }
 
 /* Receipes */
@@ -155,7 +221,7 @@ button {
   height: 130px;
 }
 
-.ingredient {
+.listIngredients {
   color: white;
   font-family: 'Lato', sans-serif;
   font-size: 12px;
@@ -176,11 +242,34 @@ button {
   -webkit-box-orient: vertical;
 }
 
-button {
-  cursor: pointer;
+.rotate {
+  transform: rotate(90deg);
+  margin-left: 4px;
+  top : 30px;
 }
 
-.rotate {
-  transform: rotate(-90deg);
-  /* margin-left: -21px; */
+.open {
+  width: 554px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 20px;
+  padding-right: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  width: 4px;
+  background-color: white;
+}
+
+/* No highlight for input */
+input:focus{
+  outline: none;
+}
+
+::placeholder {
+  color: white;
+  opacity: 0.5;
 }

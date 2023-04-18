@@ -1,10 +1,7 @@
 export function receipeFactory(data) {
   const { name, ingredients, quantity, unit, time, description } = data;
 
-  // console.log("@@@@@@@@@@@@Data : ", data.appliance);
-
   function getUserCardDOM() {
-    // console.log('data.ingredient dans UsercardDom: ', ingredients);
 
     const receipeCard = document.createElement('div');
     receipeCard.classList.add('receipeCard');
@@ -37,7 +34,7 @@ export function receipeFactory(data) {
     cardIngredientDescription.classList.add('cardIngredientDescription');
 
     const ingredient = document.createElement('div');
-    ingredient.classList.add('ingredient');
+    ingredient.classList.add('listIngredients');
 
     ingredients.forEach((meal) => {
       const element = document.createElement('div');
