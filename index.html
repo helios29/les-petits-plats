@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <!-- Meta Tags -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title -->
+    <title>Les petits plats</title>
+    <!--CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="./asset/toque.png" />
+    <script
+      src="https://kit.fontawesome.com/69c2adeeec.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap"
       rel="stylesheet"
     />
-    <script
-      src="https://kit.fontawesome.com/69c2adeeec.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>Les petits plats</title>
   </head>
   <body>
     <header>
@@ -24,7 +30,6 @@
       <div class="barSearch">
         <input
           id="searchbar"
-          onkeyup="search_receipe()"
           type="text"
           name="search"
           placeholder="Rechercher une recette.."
@@ -33,20 +38,20 @@
       </div>
     </header>
 
-    <div class="filters">
+    <section class="filters">
       <div class="filterElement ingredient">
         <input
-        id="Ingrédients"
-        class="buttonBarSearch close"
-        type="button"
-        name="ingredient"
-        value="Ingrédients"
-        placeholder="Rechercher un ingrédient..."
-      />
-      <div class="filterIcon">&lsaquo;</div>
-      <ul class="choice" style="display: none"></ul>
-    </div>
-      
+          id="Ingrédients"
+          class="buttonBarSearch close"
+          type="button"
+          name="ingredient"
+          value="Ingrédients"
+          placeholder="Rechercher un ingrédient..."
+        />
+        <div class="filterIcon">&lsaquo;</div>
+        <ul class="choice" style="display: none"></ul>
+      </div>
+
       <div class="filterElement device">
         <input
           id="Appareils"
@@ -59,7 +64,7 @@
         <div class="filterIcon">&lsaquo;</div>
         <ul class="choice" style="display: none"></ul>
       </div>
-      
+
       <div class="filterElement ustensil">
         <input
           id="Ustensils"
@@ -72,29 +77,12 @@
         <div class="filterIcon">&lsaquo;</div>
         <ul class="choice" style="display: none"></ul>
       </div>
-      
-      
-      <!-- <button id="ingredient" class="close">
-        Ingredients
-        <div class="filterIcon">&lsaquo;</div>
-        <ul class="choice" style="display: none"></ul>
-      </button>
 
-      <button id="device" class="close">
-        Appareils
-        <div class="filterIcon">&lsaquo;</div>
-        <ul class="choice" style="display: none"></ul>
-      </button> -->
-        
-    
-
-      <!-- <button id="ustensil" class="close">
-          Ustensiles
-          <div class="filterIcon">&lsaquo;</div>
-          <ul class="choice" style="display: none;"></ul>
-        </button> -->
-    </div>
+      <div class="card__not_found"></div>
+    </section>
     <section id="receipesList"></section>
+    
+    <!-- JS -->
     <script type="module" src="/scripts/pages/meal.js"></script>
     <script type="module" src="/scripts/factories/mealFactory.js"></script>
     <script type="module" src="/scripts/factories/buttonFactory.js"></script>

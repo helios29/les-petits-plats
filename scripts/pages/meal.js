@@ -156,19 +156,48 @@ const searchBar = document.querySelector('#searchbar');
 searchBar.addEventListener('keyup', (e) => {
   const words = e.target.value;
   const recipes = document.querySelectorAll('.receipeCard');
-  filterElements(words, recipes);
+  const cardNotFound = document.querySelector('.card__not_found');
+  filterElements(words, recipes, cardNotFound);
 });
 
-function filterElements(words, recipes) {
+function filterElements(words, recipes, cardNotFound) {
+  let nbrCardNone = 0;
   if (words.length > 2) {
     for (let i = 0; i < recipes.length; i++) {
       if (recipes[i].textContent.toLowerCase().includes(words)) {
         recipes[i].style.display = 'block';
       } else {
         recipes[i].style.display = 'none';
+        nbrCardNone += 1;
       }
     }
-  } else {
-    displayData(dataFetch)
   }
+
+  if (nbrCardNone === recipes.length){
+    cardNotFound.innerText = `Oups, il ny a aucune recette correspondante. Pourtant nous avons des recettes au thon, à la coco aux pommes etc....`;
+  } else {
+    cardNotFound.innerText = ``;
+  }
+}
+
+// ButtonBAR EVENT
+const buttonBar = document.querySelector(`#${e}`);
+
+buttonBar.addEventListener('keyup', (event) => {
+  const words = event.target.value;
+  const recipes = document.querySelectorAll('.choice li');
+  console.log("words", words)
+  console.log("recipes", recipes)
+  filterElementsButton(words, recipes);
+});
+
+function filterElementsButton(words, recipes) {
+  for (let i = 0; i < recipes.length; i++) {
+    if (recipes[i].textContent.toLowerCase().includes(words)) {
+      recipes[i].style.display = 'block';
+    } else {
+      recipes[i].style.display = 'none';
+    }
+  }
+
 }
