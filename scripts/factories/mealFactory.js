@@ -1,10 +1,19 @@
 export function receipeFactory(data) {
-  const { name, ingredients, quantity, unit, time, description } = data;
+  const { name, ingredients, appliance, ustensils, quantity, unit, time, description } = data;
 
   function getUserCardDOM() {
 
     const receipeCard = document.createElement('div');
     receipeCard.classList.add('receipeCard');
+    receipeCard.setAttribute("style", "display: block");
+    receipeCard.setAttribute('appliance', appliance);
+    receipeCard.setAttribute('ustensils', ustensils);
+    const arrayIngredient = [];
+    ingredients.forEach((element) => {
+      arrayIngredient.push(element.ingredient);
+    });
+    // console.log("ingredients", arrayIngredient)
+    receipeCard.setAttribute('ingredients', arrayIngredient);
 
     const img = document.createElement('div');
     img.classList.add('img');
@@ -78,6 +87,8 @@ export function receipeFactory(data) {
     name,
     ingredients,
     quantity,
+    appliance,
+    ustensils,
     unit,
     time,
     description,

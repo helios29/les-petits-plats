@@ -38,6 +38,7 @@
       </div>
     </header>
 
+    <section class="tagContainer"></section>
     <section class="filters">
       <div class="filterElement ingredient">
         <input
@@ -81,12 +82,21 @@
       <div class="card__not_found"></div>
     </section>
     <section id="receipesList"></section>
-    
-    <!-- JS -->
-    <script type="module" src="/scripts/pages/meal.js"></script>
+
+    <!-- Utils -->
+    <script type="module" src="/scripts/utils/tags.js"></script>
+    <script type="module" src="/scripts/utils/filterTags.js"></script>
+    <script type="module" src="/scripts/utils/filter.js"></script>
+    <script type="module" src="/scripts/utils/button.js"></script>
+
+    <!-- <script type="module" src="/scripts/utils/filterV2.js"></script> -->
+
+    <!-- Factories -->
     <script type="module" src="/scripts/factories/mealFactory.js"></script>
     <script type="module" src="/scripts/factories/buttonFactory.js"></script>
-    <script type="module" src="/scripts/utils/search.js"></script>
-    <script type="module" src="/scripts/utils/buttons.js"></script>
+    <script type="module" src="/scripts/factories/tagFactory.js"></script>
+
+    <!-- JS -->
+    <script type="module" src="/scripts/pages/meal.js"></script>
   </body>
 </html>

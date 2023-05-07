@@ -278,3 +278,33 @@ input:focus{
   color: white;
   opacity: 0.5;
 }
+
+/* tags */
+.tagContainer{
+  display: flex;
+  flex-direction: row;
+  padding-top: 15px;
+}
+
+.tag {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  font-size: 18px;
+  padding: 15px;
+  margin: 0px 15px;
+  border-radius: 5px;
+
+}
+
+.fa-circle-xmark{
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  
+}
+.btnTag{
+  text-decoration: none;
+  background-color:#3282f7;
+  border: none;
+}
