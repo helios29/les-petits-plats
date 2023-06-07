@@ -1,19 +1,29 @@
 export function receipeFactory(data) {
-  const { name, ingredients, appliance, ustensils, quantity, unit, time, description } = data;
+  const {
+    name,
+    ingredients,
+    appliance,
+    ustensils,
+    quantity,
+    unit,
+    time,
+    description,
+    id,
+  } = data;
 
   function getUserCardDOM() {
-
-    const receipeCard = document.createElement('div');
-    receipeCard.classList.add('receipeCard');
-    receipeCard.setAttribute("style", "display: block");
-    receipeCard.setAttribute('appliance', appliance);
-    receipeCard.setAttribute('ustensils', ustensils);
+    const recipeCard = document.createElement('div');
+    recipeCard.classList.add('recipeCard');
+    recipeCard.setAttribute('id', `${id}`);
+    recipeCard.setAttribute('style', 'display: block');
+    recipeCard.setAttribute('appliance', appliance);
+    recipeCard.setAttribute('ustensils', ustensils);
     const arrayIngredient = [];
     ingredients.forEach((element) => {
       arrayIngredient.push(element.ingredient);
     });
     // console.log("ingredients", arrayIngredient)
-    receipeCard.setAttribute('ingredients', arrayIngredient);
+    recipeCard.setAttribute('ingredients', arrayIngredient);
 
     const img = document.createElement('div');
     img.classList.add('img');
@@ -57,8 +67,10 @@ export function receipeFactory(data) {
         } else {
           element.innerHTML = `${meal.ingredient} : ${meal.quantity} ${meal.unit}`;
         }
-      } else {
+      } else if (meal.quantity) {
         element.innerHTML = `${meal.ingredient} : ${meal.quantity}`;
+      } else {
+        element.innerHTML = `${meal.ingredient}`;
       }
 
       ingredient.appendChild(element);
@@ -77,10 +89,10 @@ export function receipeFactory(data) {
     cardDescription.appendChild(cardTitleTime);
     cardDescription.appendChild(cardIngredientDescription);
 
-    receipeCard.appendChild(img);
-    receipeCard.appendChild(cardDescription);
+    recipeCard.appendChild(img);
+    recipeCard.appendChild(cardDescription);
 
-    return receipeCard;
+    return recipeCard;
   }
 
   return {
@@ -92,6 +104,7 @@ export function receipeFactory(data) {
     unit,
     time,
     description,
+    id,
     getUserCardDOM,
   };
 }

@@ -171,7 +171,7 @@
           "unit": "cuillères à soupe"
         },
         {
-          "ingredient": "gruyère râpé",
+          "ingredient": "Gruyère râpé",
           "quantity": 100,
           "unit": "grammes"
         },
@@ -459,7 +459,7 @@
           "unit": "cuillère à soupe"
         },
         {
-          "ingredient": "huile d'olive",
+          "ingredient": "Huile d'olive",
           "quantity": 2,
           "unit": "cuillère à soupe"
         }
@@ -572,7 +572,7 @@
           "unit": "tiges"
         },
         {
-          "ingredient": "huile d'olives",
+          "ingredient": "Huile d'olive",
           "quantity": 2,
           "unit": "cuillère à soupe"
         }
@@ -698,7 +698,7 @@
           "unit": "grammes"
         },
         {
-          "ingredient": "huile d'olive",
+          "ingredient": "Huile d'olive",
           "quantity": 1,
           "unit": "cuillères à soupe"
         }
@@ -911,7 +911,7 @@
           "quantity": 1
         },
         {
-          "ingredient": "Huile d'olives"
+          "ingredient": "Huile d'olive"
         },
         {
           "ingredient": "Oignon",
@@ -1284,7 +1284,7 @@
           "unit": "grammes"
         },
         {
-          "ingredient": "Huile d'olives",
+          "ingredient": "Huile d'olive",
           "quantity": 25,
           "unit": "cl"
         },
@@ -1663,7 +1663,7 @@
       "servings": 4,
       "ingredients": [
         {
-          "ingredient": "Bananes",
+          "ingredient": "Banane",
           "quantity": 2
         },
         {

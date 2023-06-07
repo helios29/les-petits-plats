@@ -15,12 +15,12 @@ export class Recipes {
   }
 
   displayData(recipes) {
-    const receipesList = document.querySelector('#receipesList');
+    const recipesList = document.querySelector('#recipesList');
 
-    recipes.forEach((receipe) => {
-      const receipeModel = receipeFactory(receipe);
-      const userCardDOM = receipeModel.getUserCardDOM();
-      receipesList.appendChild(userCardDOM);
+    recipes.forEach((recipe) => {
+      const recipeModel = receipeFactory(recipe);
+      const userCardDOM = recipeModel.getUserCardDOM();
+      recipesList.appendChild(userCardDOM);
     });
   }
 }

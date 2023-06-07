@@ -42,52 +42,61 @@
     <section class="filters">
       <div class="filterElement ingredient">
         <input
-          id="Ingrédients"
+          id="ingredients"
           class="buttonBarSearch close"
           type="button"
-          name="ingredient"
+          name="ingredients"
           value="Ingrédients"
           placeholder="Rechercher un ingrédient..."
         />
         <div class="filterIcon">&lsaquo;</div>
-        <ul class="choice" style="display: none"></ul>
+        <ul class="choice ingredientsTag" style="display: none"></ul>
       </div>
 
       <div class="filterElement device">
         <input
-          id="Appareils"
+          id="appliances"
           class="buttonBarSearch close"
           type="button"
-          name="device"
+          name="appliances"
           value="Appareils"
           placeholder="Rechercher un appareil..."
         />
         <div class="filterIcon">&lsaquo;</div>
-        <ul class="choice" style="display: none"></ul>
+        <ul
+          class="choice appliancesTag"
+          id="appliances"
+          style="display: none"
+        ></ul>
       </div>
 
       <div class="filterElement ustensil">
         <input
-          id="Ustensils"
+          id="ustensils"
           class="buttonBarSearch close"
           type="button"
-          name="ustensil"
+          name="ustensils"
           value="Ustensils"
           placeholder="Rechercher un ustensil..."
         />
         <div class="filterIcon">&lsaquo;</div>
-        <ul class="choice" style="display: none"></ul>
+        <ul
+          class="choice ustensilsTag"
+          id="ustensils"
+          style="display: none"
+        ></ul>
       </div>
 
       <div class="card__not_found"></div>
     </section>
-    <section id="receipesList"></section>
+    <section id="recipesList"></section>
 
     <!-- Utils -->
+    <script type="module" src="/scripts/utils/filterSearchBar.js"></script>
     <script type="module" src="/scripts/utils/tags.js"></script>
-    <script type="module" src="/scripts/utils/filterTags.js"></script>
-    <script type="module" src="/scripts/utils/filter.js"></script>
+    <script type="module" src="/scripts/utils/filterTagsV2.js"></script>
     <script type="module" src="/scripts/utils/button.js"></script>
+    <script type="module" src="/scripts/utils/filterButtonBar.js"></script>
 
     <!-- <script type="module" src="/scripts/utils/filterV2.js"></script> -->
 

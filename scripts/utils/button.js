@@ -1,10 +1,10 @@
 import { buttonFactory } from '../factories/buttonFactory.js';
 import { Recipes } from '../pages/meal.js';
 import { dataFetch } from '../pages/meal.js';
-import { taglaunch } from '../utils/tags.js';
-import { wordSEARCHBAR } from '../utils/filter.js';
 
-class ButtonFilter extends Recipes {
+
+
+export class ButtonFilter extends Recipes {
   constructor(data, buttonElement) {
     super(data);
     this.buttonElement = buttonElement;
@@ -15,10 +15,10 @@ class ButtonFilter extends Recipes {
     // console.log('bouton cliqué : ', buttonName);
 
     const buttonName = listButton;
-    // console.log('=============@ buttonName: ', buttonName);
+    //  console.log('=============@ buttonName: ', buttonName);
     // console.log('=============@ recipes: ', recipes);
 
-    if (buttonName === 'Ingrédients') {
+    if (buttonName === 'ingredients') {
       const listIngredients = [];
 
       recipes.forEach((recipe) => {
@@ -30,13 +30,13 @@ class ButtonFilter extends Recipes {
       });
       return buttonFilter.createUniqueList(listIngredients);
     }
-    if (buttonName === 'Appareils') {
+    if (buttonName === 'appliances') {
       const listDevices = [];
       recipes.forEach((recipe) => listDevices.push(recipe.appliance));
 
       return buttonFilter.createUniqueList(listDevices);
     }
-    if (buttonName === 'Ustensils') {
+    if (buttonName === 'ustensils') {
       const listUstensils = [];
 
       recipes.forEach((recipe) => {
@@ -56,28 +56,22 @@ class ButtonFilter extends Recipes {
   }
 
   displaylist(finalList, listButton) {
-    // const buttonList = document.querySelector(`#${e} .choice`);
-    // console.log('-------------> e', `#${listButton}`);
-
-    const buttonList = document.querySelector(`#${listButton}`)
-      .nextElementSibling.nextElementSibling;
+    const buttonList = document.querySelector(`.${listButton}Tag`);
     // console.log('buttonList', buttonList);
     finalList.forEach((list) => {
-      const buttonModel = buttonFactory(list);
+      const buttonModel = buttonFactory(list, listButton);
       buttonList.appendChild(buttonModel);
     });
   }
 
   displayTitleButton(title) {
-    console.log('&&&&&&&&&&&&&&&&& title', title);
-
-    if (title === 'Ingrédients') {
+    if (title === 'ingredients') {
       return 'Ingrédents';
     }
-    if (title === 'Appareils') {
+    if (title === 'appliances') {
       return 'Appareils';
     }
-    if (title === 'Ustensils') {
+    if (title === 'ustensils') {
       return 'Ustensils';
     }
   }
@@ -106,15 +100,16 @@ class ButtonFilter extends Recipes {
       element.type = 'button';
       element.value = buttonFilter.displayTitleButton(e);
       const wordChoice = document.querySelectorAll('.choice li');
-      if (wordSEARCHBAR === '') {
-        //if not word enter in the search bar
-        for (let i = 0; i < wordChoice.length; i++)
-          wordChoice[i].style.display = 'block';
-      }
+      // if (wordSEARCHBAR === '') {
+      //   //if not word enter in the search bar
+      //   for (let i = 0; i < wordChoice.length; i++)
+      //     wordChoice[i].style.display = 'block';
+      // }
     }
   }
 }
 
+// listener on the button
 document.querySelectorAll('.buttonBarSearch').forEach((button) => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
@@ -122,12 +117,14 @@ document.querySelectorAll('.buttonBarSearch').forEach((button) => {
   });
 });
 
+export const displayTagList = (buttonFilter) => {
+  const listButtons = ['ingredients', 'appliances', 'ustensils'];
+  listButtons.forEach((listButton) => {
+    const finalList = buttonFilter.createListElement(dataFetch, listButton);
+    buttonFilter.displaylist(finalList, listButton);
+  });
+  console.log("Hello button.js")
+};
+
 const buttonFilter = new ButtonFilter(dataFetch);
-
-const listButtons = ['Ingrédients', 'Appareils', 'Ustensils'];
-listButtons.forEach((listButton) => {
-  const finalList = buttonFilter.createListElement(dataFetch, listButton);
-  buttonFilter.displaylist(finalList, listButton);
-});
-
-taglaunch();
+displayTagList(buttonFilter);

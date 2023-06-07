@@ -1,8 +1,7 @@
-export function tagFactory(tag) {
-  console.log('tag', tag);
-
+export function tagFactory(tag, buttonName) {
   const tagDiv = document.createElement('div');
-  tagDiv.classList.add('tag');
+  tagDiv.classList.add('tagSelected');
+  tagDiv.setAttribute('data-tag', `${buttonName}`);
 
   const tagElement = document.createElement('div');
   tagElement.classList.add('tagElement');
@@ -15,6 +14,5 @@ export function tagFactory(tag) {
   tagDiv.appendChild(tagElement);
   tagDiv.appendChild(tagCloseButton);
 
-  console.log('tagDiv', tagDiv);
   return tagDiv;
 }

@@ -1,88 +1,154 @@
 import { tagFactory } from '../factories/tagFactory.js';
-import { listTagCreation } from '../utils/filterTags.js';
-import { tagCloseShowAllCard } from '../utils/filterTags.js';
+import { getTagInArrays } from '../utils/filterTagsV2.js';
+import { filterResult } from '../utils/filterTagsV2.js';
+import { Recipes } from '../pages/meal.js';
+import { wordSEARCHBAR } from '../utils/filterSearchBar.js';
+import { filterSearchBarElements } from '../utils/filterSearchBar.js';
+import { nbrTagSelected } from '../utils/filterTagsV2.js';
 
 let arrayTag = [];
 export let buttonName = '';
+export let tagSelected = '';
 
-function onClickTagButton(liClicked, buttonName) {
-  console.log('========> onClickEventButton event', liClicked);
-  console.log('========> onClickEventButton buttonName', buttonName);
-
-  if (liClicked !== undefined && liClicked.className === 'notClicked') {
+function showTagButton(tagSelected, buttonName) {
+  // Permet de voir les bouttons des tags à l'écran
+  if (tagSelected !== undefined && tagSelected.className === 'notClicked') {
     // event.preventDefault();
-    console.log(
-      '========> onClickEventButton event.textContent',
-      liClicked.textContent
-    );
 
     const tagContainer = document.querySelector(`.tagContainer`);
-    const tagModel = tagFactory(liClicked.innerText);
+    const tagModel = tagFactory(tagSelected.innerText, buttonName);
     arrayTag.push(tagModel);
-    console.log(
-      '============> onClickEventButton arrayTag arrayTagLength',
-      arrayTag,
-      arrayTag.length
-    );
+    console.log('tagSelected', tagSelected);
+    // console.log('tagModel', tagModel);
+    // console.log(' arrayTag', arrayTag);
     tagContainer.appendChild(tagModel);
 
     const tagCloseButton = tagModel.children[1];
-    console.log(
-      '====================> onClickEventButton tagCloseButton',
-      tagCloseButton
-    );
 
-    liClicked.className = 'clicked';
-
-    if (buttonName === 'Ingrédients') {
+    if (buttonName === 'ingredients') {
       tagModel.style.backgroundColor = '#3282f7';
       tagCloseButton.style.backgroundColor = '#3282f7';
-    } else if (buttonName === 'Appareils') {
+    } else if (buttonName === 'appliances') {
       tagModel.style.backgroundColor = '#68d9a4';
       tagCloseButton.style.backgroundColor = '#68d9a4';
-    } else if (buttonName === 'Ustensils') {
+    } else if (buttonName === 'ustensils') {
       tagModel.style.backgroundColor = '#ed6454';
       tagCloseButton.style.backgroundColor = '#ed6454';
     }
-    return liClicked;
+    return tagSelected;
   }
 }
 
-function tagclose(e, liClicked) {
+function tagclose(e, nbrTagSelected) {
   e.remove();
-  liClicked.className = 'notClicked';
-  return arrayTag.length - 1;
+  tagSelected.className = 'notClicked';
+  nbrTagSelected -= 2;
+  console.log('nbrTagSelected', nbrTagSelected);
+  // return arrayTag.length - 1;
 }
 
-function tagEventListener(arrayTag, liClicked) {
-  console.log('liClicked.innerText', liClicked.innerText);
-
+function tagDelete(arrayTag, tagSelected) {
   arrayTag.forEach((tag) => {
     tag.addEventListener('click', (e) => {
-      const numberOfTag = tagclose(e.currentTarget, liClicked, arrayTag);
-      arrayTag.splice(-1);
-      tagCloseShowAllCard(numberOfTag);
+      // console.log('tagDelete', e.currentTarget);
+      // const numberOfTag = tagclose(e.currentTarget, tagSelected, arrayTag);
+      // arrayTag.splice(-1);
+
+      const tagsSelectedInArray = getTagInArrays();
+
+      const ingredients = tagsSelectedInArray.arrayIngredientsSelected;
+      const appareils = tagsSelectedInArray.arrayAppareilsSelected;
+      const ustensils = tagsSelectedInArray.arrayUstensilsSelected;
+      const nbrTagSelected = tagsSelectedInArray.nbrTagSelected
+
+      tagclose(e.currentTarget, nbrTagSelected)
+
+
+      const results = filterResult(ingredients, appareils, ustensils);
+
+      const recipesCard = new Recipes();
+      recipesCard.displayData(results);
+
+      const recipes = document.querySelectorAll('.recipeCard');
+      filterSearchBarElements(wordSEARCHBAR, recipes);
+      taglaunch();
+      // console.log("searchBarlaunch in tag delete")
+      // searchBarlaunch();
     });
   });
 }
 
 export function taglaunch() {
-  const choiceLi = document.querySelectorAll(`.choice li`);
-  // console.log('choiceLi', choiceLi);
-  choiceLi.forEach((choice) => {
+  document.querySelectorAll('.choice li').forEach((choice) => {
     choice.addEventListener('click', (e) => {
       e.preventDefault();
-      const parentButton = e.currentTarget.parentElement;
-      const buttonName =
-        parentButton.previousElementSibling.previousElementSibling.id;
-      const tagElement = onClickTagButton(e.currentTarget, buttonName);
-      // console.log('tagElement', tagElement.innerText);
+      tagSelected = e.currentTarget;
+      const buttonName = tagSelected.dataset.tag;
+      const tagElement = showTagButton(tagSelected, buttonName);
 
       if (arrayTag.length > 0) {
-        console.log('buttonName', buttonName);
-        listTagCreation(tagElement.innerText, buttonName);
-        tagEventListener(arrayTag, tagElement);
+        const tagsSelectedInArray = getTagInArrays();
+
+        const ingredients = tagsSelectedInArray.arrayIngredientsSelected;
+        const appareils = tagsSelectedInArray.arrayAppareilsSelected;
+        const ustensils = tagsSelectedInArray.arrayUstensilsSelected;
+
+        const results = filterResult(ingredients, appareils, ustensils);
+
+        const recipesCard = new Recipes();
+        recipesCard.displayData(results);
+
+        const recipes = document.querySelectorAll('.recipeCard');
+        filterSearchBarElements(wordSEARCHBAR, recipes);
+        tagDelete(arrayTag, tagElement);
+
+        tagSelected.setAttribute('class', 'clicked');
+        tagInClickedClass(ingredients, appareils, ustensils);
+        // tagSelected.classList.add('clicked');
+        // console.log('tagSelected', tagSelected);
+        // console.log('tagSelected.classList', tagSelected.classList);
       }
     });
   });
 }
+
+// Avoid double click on tags
+function tagInClickedClass(ingredients, appareils, ustensils) {
+  if (ingredients && ingredients.length > 0) {
+    const ingredientsLi = document.querySelectorAll('.ingredientsTag li');
+    ingredients.forEach((ingredient) => {
+      ingredientsLi.forEach((ingredientLi) => {
+        // console.log('ingredient', ingredient);
+        // console.log('ingredientLi', ingredientLi);
+        if (ingredient === ingredientLi.innerText) {
+          ingredientLi.className = 'Clicked';
+        }
+      });
+    });
+  }
+
+  if (appareils && appareils.length > 0) {
+    const appareilsLi = document.querySelectorAll('.appliancesTag li');
+    appareils.forEach((appareil) => {
+      appareilsLi.forEach((appareilLi) => {
+        if (appareil === appareilLi.innerText) {
+          appareilLi.className = 'Clicked';
+        }
+      });
+    });
+  }
+
+  if (ustensils && ustensils.length > 0) {
+    const ustensilsLi = document.querySelectorAll('.ustensilsTag li');
+    ustensils.forEach((ustensil) => {
+      ustensilsLi.forEach((ustensilLi) => {
+        if (ustensil === ustensilLi.innerText) {
+          ustensilLi.className = 'Clicked';
+        }
+      });
+    });
+  }
+}
+
+// Lauch tag if no word enter in searchBar
+taglaunch();
