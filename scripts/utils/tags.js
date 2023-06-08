@@ -59,10 +59,9 @@ function tagDelete(arrayTag, tagSelected) {
       const ingredients = tagsSelectedInArray.arrayIngredientsSelected;
       const appareils = tagsSelectedInArray.arrayAppareilsSelected;
       const ustensils = tagsSelectedInArray.arrayUstensilsSelected;
-      const nbrTagSelected = tagsSelectedInArray.nbrTagSelected
+      const nbrTagSelected = tagsSelectedInArray.nbrTagSelected;
 
-      tagclose(e.currentTarget, nbrTagSelected)
-
+      tagclose(e.currentTarget, nbrTagSelected);
 
       const results = filterResult(ingredients, appareils, ustensils);
 
@@ -97,6 +96,7 @@ export function taglaunch() {
 
         const recipesCard = new Recipes();
         recipesCard.displayData(results);
+        console.log('results', results);
 
         const recipes = document.querySelectorAll('.recipeCard');
         filterSearchBarElements(wordSEARCHBAR, recipes);

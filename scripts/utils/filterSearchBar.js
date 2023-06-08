@@ -27,10 +27,11 @@ export function filterSearchBarElements(words, recipes) {
   let appliancesListArray = [];
 
   if (words.length > 2 || nbrTagSelected > 0) {
-    // filter if words > 2 letters
-    console.log('-------------------> recipes.length', recipes.length);
+    // filter if words > 2 letters or tag has been selected
+
     for (let i = 0; i < recipes.length; i++) {
       if (recipes[i].textContent.toLowerCase().includes(words.toLowerCase())) {
+        //Show the recipes that match
         recipes[i].style.display = 'block';
         arrayListButton = recipes[i].getAttribute('appliance').split(',');
         appliancesListArray = createAppliancesArray(
@@ -50,19 +51,25 @@ export function filterSearchBarElements(words, recipes) {
           ingredientsListArray
         );
       } else {
+        //Don't show recipes that doesn't match
         recipes[i].style.display = 'none';
         nbrCardNone += 1;
       }
     }
-  } else {
+
+    console.log('-------------------> recipes.length', recipes.length);
+  } else if (words.length < 3) {
     // show all cards
+    const recipesList = document.getElementById('recipesList');
+    recipesList.innerHTML = '';
     const recipesAll = new Recipes();
     // console.log('dataFetch', dataFetch);
     recipesAll.displayData(dataFetch);
-    const recipes = document.querySelectorAll('.recipeCard');
     console.log('-------------------> recipes.length', recipes.length);
+
     for (let i = 0; i < recipes.length; i++) {
       if (recipes[i].textContent.toLowerCase().includes(words.toLowerCase())) {
+        //Show the recipes that match
         recipes[i].style.display = 'block';
         arrayListButton = recipes[i].getAttribute('appliance').split(',');
         appliancesListArray = createAppliancesArray(
@@ -82,6 +89,7 @@ export function filterSearchBarElements(words, recipes) {
           ingredientsListArray
         );
       } else {
+        //Don't show recipes that doesn't match
         recipes[i].style.display = 'none';
         nbrCardNone += 1;
       }
