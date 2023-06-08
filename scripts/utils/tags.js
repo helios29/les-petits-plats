@@ -56,12 +56,16 @@ function tagDelete(arrayTag, tagSelected) {
 
       const tagsSelectedInArray = getTagInArrays();
 
-      const ingredients = tagsSelectedInArray.arrayIngredientsSelected;
-      const appareils = tagsSelectedInArray.arrayAppareilsSelected;
-      const ustensils = tagsSelectedInArray.arrayUstensilsSelected;
+      const ingredients = [];
+      const appareils = [];
+      const ustensils = [];
       const nbrTagSelected = tagsSelectedInArray.nbrTagSelected;
 
       tagclose(e.currentTarget, nbrTagSelected);
+      console.log('====================> ingredients', ingredients);
+      // console.log("searchBarlaunch in tag delete")
+      // console.log("searchBarlaunch in tag delete")
+      // arrayTag.remove(tagSelected);
 
       const results = filterResult(ingredients, appareils, ustensils);
 

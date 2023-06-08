@@ -58,6 +58,7 @@ export function filterSearchBarElements(words, recipes) {
     }
 
     console.log('-------------------> recipes.length', recipes.length);
+    
   } else if (words.length < 3) {
     // show all cards
     const recipesList = document.getElementById('recipesList');
