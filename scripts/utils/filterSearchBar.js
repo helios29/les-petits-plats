@@ -6,6 +6,7 @@ import { dataFetch } from '../pages/meal.js';
 export let wordSEARCHBAR = '';
 
 export function searchBarlaunch() {
+ 
   // // SEARCHBAR EVENT
   const searchBar = document.querySelector('#searchbar');
 
@@ -14,7 +15,6 @@ export function searchBarlaunch() {
     console.log('wordSEARCHBAR', wordSEARCHBAR);
     const recipes = document.querySelectorAll('.recipeCard');
     filterSearchBarElements(wordSEARCHBAR, recipes);
-    // filterButtonList(wordSEARCHBAR);
   });
 }
 
@@ -113,7 +113,6 @@ export function filterSearchBarElements(words, recipes, nbrTagSelected) {
   // Tag launch
   taglaunch(nbrTagSelected);
   console.log('searchBarlaunch in filterSearchBarElements');
-  // searchBarlaunch();
 }
 
 export function generateNewTagListing(
@@ -142,7 +141,6 @@ export function generateNewTagListing(
       finalList = ustensilsListArray;
     }
     buttonFilter.displaylist(finalList, buttonName);
-    // console.log('buttonName - finalList ', buttonName, finalList);
   });
 }
 

@@ -1,8 +1,6 @@
 import { dataFetch } from '../pages/meal.js';
 import { wordSEARCHBAR } from '../utils/filterSearchBar.js';
 
-// export let nbrTagSelected = 0;
-
 export function getTagInArrays(nbrTagSelected) {
   const arrayIngredientsSelected = [];
   const arrayUstensilsSelected = [];
@@ -75,9 +73,6 @@ export function filterResult(ingredients, appareils, ustensils) {
         )
       );
     });
-    // result = result.filter((recipe) =>
-    //   recipe.ustensils.some((u) => ustensils.includes(u))
-    // );
   }
 
   return result;

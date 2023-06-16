@@ -22,7 +22,7 @@ export function receipeFactory(data) {
     ingredients.forEach((element) => {
       arrayIngredient.push(element.ingredient);
     });
-    // console.log("ingredients", arrayIngredient)
+
     recipeCard.setAttribute('ingredients', arrayIngredient);
 
     const img = document.createElement('div');

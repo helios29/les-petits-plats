@@ -11,12 +11,8 @@ export class ButtonFilter extends Recipes {
   }
 
   createListElement(recipes, listButton) {
-    // const buttonName = e;
-    // console.log('bouton cliqué : ', buttonName);
 
     const buttonName = listButton;
-    //  console.log('=============@ buttonName: ', buttonName);
-    // console.log('=============@ recipes: ', recipes);
 
     if (buttonName === 'ingredients') {
       const listIngredients = [];
@@ -57,7 +53,7 @@ export class ButtonFilter extends Recipes {
 
   displaylist(finalList, listButton) {
     const buttonList = document.querySelector(`.${listButton}Tag`);
-    // console.log('buttonList', buttonList);
+    
     finalList.forEach((list) => {
       const buttonModel = buttonFactory(list, listButton);
       buttonList.appendChild(buttonModel);
@@ -82,10 +78,6 @@ export class ButtonFilter extends Recipes {
     const filterIcon = list.previousElementSibling;
 
     const element = document.querySelector(`#${e}`);
-    // console.log('-------------> element', element);
-    // console.log('-------------> list', list);
-    // console.log('-------------> filterIcon', filterIcon);
-    // console.log('-------------> Button wordSEARCHBAR', wordSEARCHBAR);
 
     if (list.style.display === 'none') {
       list.style.display = 'grid';
@@ -99,12 +91,6 @@ export class ButtonFilter extends Recipes {
       element.className = 'buttonBarSearch close already';
       element.type = 'button';
       element.value = buttonFilter.displayTitleButton(e);
-      const wordChoice = document.querySelectorAll('.choice li');
-      // if (wordSEARCHBAR === '') {
-      //   //if not word enter in the search bar
-      //   for (let i = 0; i < wordChoice.length; i++)
-      //     wordChoice[i].style.display = 'block';
-      // }
     }
   }
 }
@@ -123,7 +109,6 @@ export const displayTagList = (buttonFilter) => {
     const finalList = buttonFilter.createListElement(dataFetch, listButton);
     buttonFilter.displaylist(finalList, listButton);
   });
-  console.log("Hello button.js")
 };
 
 const buttonFilter = new ButtonFilter(dataFetch);

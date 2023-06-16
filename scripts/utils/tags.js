@@ -11,16 +11,14 @@ export let buttonName = '';
 export let tagSelected = '';
 
 function showTagButton(tagSelected, buttonName) {
-  // Permet de voir les bouttons des tags à l'écran
+  
+  // show tags on screen
   if (tagSelected !== undefined && tagSelected.className === 'notClicked') {
-    // event.preventDefault();
-
+    
     const tagContainer = document.querySelector(`.tagContainer`);
     const tagModel = tagFactory(tagSelected.innerText, buttonName);
+    
     arrayTag.push(tagModel);
-    console.log('tagSelected', tagSelected);
-    // console.log('tagModel', tagModel);
-    // console.log(' arrayTag', arrayTag);
     tagContainer.appendChild(tagModel);
 
     const tagCloseButton = tagModel.children[1];
@@ -80,22 +78,6 @@ function tagDelete(arrayTag, nbrTagSelected) {
         console.log('searchBarlaunch in tag delete');
         searchBarlaunch();
       }
-
-      // nbrTagSelected = tagclose(e.currentTarget, nbrTagSelected);
-      // console.log('====================> nbrTagSelected', nbrTagSelected);
-      // console.log('====================> ingredients', ingredients);
-      // console.log('====================> appareils', appareils);
-      // console.log('====================> ustensils', ustensils);
-      // const results = filterResult(ingredients, appareils, ustensils);
-
-      // const recipesCard = new Recipes();
-      // recipesCard.displayData(results);
-
-      // const recipes = document.querySelectorAll('.recipeCard');
-      // filterSearchBarElements(wordSEARCHBAR, recipes, nbrTagSelected);
-      // taglaunch(nbrTagSelected);
-      // console.log("searchBarlaunch in tag delete")
-      // searchBarlaunch();
     });
   });
 }
@@ -136,9 +118,6 @@ export function taglaunch() {
 
         tagSelected.setAttribute('class', 'clicked');
         tagInClickedClass(ingredients, appareils, ustensils);
-        // tagSelected.classList.add('clicked');
-        // console.log('tagSelected', tagSelected);
-        // console.log('tagSelected.classList', tagSelected.classList);
       }
     });
   });
@@ -150,8 +129,6 @@ function tagInClickedClass(ingredients, appareils, ustensils) {
     const ingredientsLi = document.querySelectorAll('.ingredientsTag li');
     ingredients.forEach((ingredient) => {
       ingredientsLi.forEach((ingredientLi) => {
-        // console.log('ingredient', ingredient);
-        // console.log('ingredientLi', ingredientLi);
         if (ingredient === ingredientLi.innerText) {
           ingredientLi.className = 'Clicked';
         }
