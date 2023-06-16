@@ -1,14 +1,13 @@
 import { dataFetch } from '../pages/meal.js';
 import { wordSEARCHBAR } from '../utils/filterSearchBar.js';
 
-export let nbrTagSelected = 0;
+// export let nbrTagSelected = 0;
 
-export function getTagInArrays() {
+export function getTagInArrays(nbrTagSelected) {
   const arrayIngredientsSelected = [];
   const arrayUstensilsSelected = [];
   const arrayAppareilsSelected = [];
   const tagsSelected = document.querySelectorAll(`.tagSelected`);
-  console.log('tagsSelected in getTagInArrays', tagsSelected.length);
 
   tagsSelected.forEach((tagSelected) => {
     const elementSelected = tagSelected.innerText;
@@ -21,13 +20,12 @@ export function getTagInArrays() {
     } else if (buttonName === 'ustensils') {
       arrayUstensilsSelected.push(elementSelected);
     }
-
-    nbrTagSelected += tagsSelected.length;
-    console.log('nbrTagSelected in getTagInArrays', nbrTagSelected);
   });
-  // console.log('Ingrédients', arrayIngredientsSelected);
-  // console.log('Appareils', arrayAppareilsSelected);
-  // console.log('Ustensils', arrayUstensilsSelected);
+  console.log('Ingrédients', arrayIngredientsSelected);
+  console.log('Appareils', arrayAppareilsSelected);
+  console.log('Ustensils', arrayUstensilsSelected);
+  nbrTagSelected += tagsSelected.length;
+  console.log('nbrTagSelected in getTagInArrays', nbrTagSelected);
 
   return {
     arrayIngredientsSelected,

@@ -1,5 +1,4 @@
 import { ButtonFilter } from '../utils/button.js';
-import { nbrTagSelected } from '../utils/filterTagsV2.js';
 import { taglaunch } from '../utils/tags.js';
 import { Recipes } from '../pages/meal.js';
 import { dataFetch } from '../pages/meal.js';
@@ -19,16 +18,19 @@ export function searchBarlaunch() {
   });
 }
 
-export function filterSearchBarElements(words, recipes) {
+export function filterSearchBarElements(words, recipes, nbrTagSelected) {
   let arrayListButton = [];
   let nbrCardNone = 0;
   let ustensilsListArray = [];
   let ingredientsListArray = [];
   let appliancesListArray = [];
+  console.log('-------------------> words', words);
+  console.log('-------------------> words.length', words.length);
+  console.log('-------------------> nbrTagSelected', nbrTagSelected);
 
   if (words.length > 2 || nbrTagSelected > 0) {
     // filter if words > 2 letters or tag has been selected
-
+    console.log('<<<< coucou tag delete');
     for (let i = 0; i < recipes.length; i++) {
       if (recipes[i].textContent.toLowerCase().includes(words.toLowerCase())) {
         //Show the recipes that match
@@ -58,15 +60,14 @@ export function filterSearchBarElements(words, recipes) {
     }
 
     console.log('-------------------> recipes.length', recipes.length);
-    
   } else if (words.length < 3) {
+    console.log('-------------------> words.length < 3');
     // show all cards
     const recipesList = document.getElementById('recipesList');
     recipesList.innerHTML = '';
     const recipesAll = new Recipes();
     // console.log('dataFetch', dataFetch);
     recipesAll.displayData(dataFetch);
-    console.log('-------------------> recipes.length', recipes.length);
 
     for (let i = 0; i < recipes.length; i++) {
       if (recipes[i].textContent.toLowerCase().includes(words.toLowerCase())) {
@@ -90,11 +91,14 @@ export function filterSearchBarElements(words, recipes) {
           ingredientsListArray
         );
       } else {
+        console.log('<<<< coucou tag delete +++++');
+        //Filter the cards if no tagsSelected
         //Don't show recipes that doesn't match
         recipes[i].style.display = 'none';
         nbrCardNone += 1;
       }
     }
+    console.log('-------------------> recipes.length', recipes.length);
   }
 
   // Show message that no card were found
@@ -107,7 +111,7 @@ export function filterSearchBarElements(words, recipes) {
     ingredientsListArray
   );
   // Tag launch
-  taglaunch();
+  taglaunch(nbrTagSelected);
   console.log('searchBarlaunch in filterSearchBarElements');
   // searchBarlaunch();
 }
@@ -124,7 +128,6 @@ export function generateNewTagListing(
     // Delete previous list and generate the filtered one
     const buttonListTags = document.querySelector(`.${buttonName}Tag`);
     buttonListTags.innerHTML = '';
-    console.log('<<<< coucou from button');
     const buttonFilter = new ButtonFilter();
 
     if (buttonName === 'ingredients') {
@@ -139,7 +142,7 @@ export function generateNewTagListing(
       finalList = ustensilsListArray;
     }
     buttonFilter.displaylist(finalList, buttonName);
-    console.log('buttonName - finalList ', buttonName, finalList);
+    // console.log('buttonName - finalList ', buttonName, finalList);
   });
 }
 
