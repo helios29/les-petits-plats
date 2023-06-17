@@ -11,13 +11,11 @@ export let buttonName = '';
 export let tagSelected = '';
 
 function showTagButton(tagSelected, buttonName) {
-  
   // show tags on screen
   if (tagSelected !== undefined && tagSelected.className === 'notClicked') {
-    
     const tagContainer = document.querySelector(`.tagContainer`);
     const tagModel = tagFactory(tagSelected.innerText, buttonName);
-    
+
     arrayTag.push(tagModel);
     tagContainer.appendChild(tagModel);
 
@@ -102,6 +100,7 @@ export function taglaunch() {
         const appareils = tagsSelectedInArray.arrayAppareilsSelected;
         const ustensils = tagsSelectedInArray.arrayUstensilsSelected;
 
+        console.log('ingredients', ingredients);
         const results = filterResult(ingredients, appareils, ustensils);
 
         const recipesCard = new Recipes();

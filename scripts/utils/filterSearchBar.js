@@ -2,11 +2,12 @@ import { ButtonFilter } from '../utils/button.js';
 import { taglaunch } from '../utils/tags.js';
 import { Recipes } from '../pages/meal.js';
 import { dataFetch } from '../pages/meal.js';
+import { getTagInArrays } from '../utils/filterTagsV2.js';
+import { filterResult } from '../utils/filterTagsV2.js';
 
 export let wordSEARCHBAR = '';
 
 export function searchBarlaunch() {
- 
   // // SEARCHBAR EVENT
   const searchBar = document.querySelector('#searchbar');
 
@@ -19,99 +20,63 @@ export function searchBarlaunch() {
 }
 
 export function filterSearchBarElements(words, recipes, nbrTagSelected) {
-  let arrayListButton = [];
   let nbrCardNone = 0;
-  let ustensilsListArray = [];
-  let ingredientsListArray = [];
-  let appliancesListArray = [];
+  let creationListing;
+  nbrTagSelected = countNbrTagSelected();
+  console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& coucou');
   console.log('-------------------> words', words);
   console.log('-------------------> words.length', words.length);
   console.log('-------------------> nbrTagSelected', nbrTagSelected);
 
-  if (words.length > 2 || nbrTagSelected > 0) {
+  if (nbrTagSelected > 0 && words.length < 3) {
+    // filter if there is a tag selected and "word" less than 3 letter
+    const tagsSelectedInArray = getTagInArrays(nbrTagSelected);
+    console.log(
+      'nbrTagSelected in getTagInArrays',
+      tagsSelectedInArray.nbrTagSelected
+    );
+    const ingredients = tagsSelectedInArray.arrayIngredientsSelected;
+    const appareils = tagsSelectedInArray.arrayAppareilsSelected;
+    const ustensils = tagsSelectedInArray.arrayUstensilsSelected;
+
+    console.log('ingredients', ingredients);
+    const results = filterResult(ingredients, appareils, ustensils);
+
+    const recipesCard = new Recipes();
+    recipesCard.displayData(results);
+  } else if (words.length > 2 || nbrTagSelected > 0) {
     // filter if words > 2 letters or tag has been selected
-    console.log('<<<< coucou tag delete');
-    for (let i = 0; i < recipes.length; i++) {
-      if (recipes[i].textContent.toLowerCase().includes(words.toLowerCase())) {
-        //Show the recipes that match
-        recipes[i].style.display = 'block';
-        arrayListButton = recipes[i].getAttribute('appliance').split(',');
-        appliancesListArray = createAppliancesArray(
-          arrayListButton,
-          appliancesListArray
-        );
-
-        arrayListButton = recipes[i].getAttribute('ustensils').split(',');
-        ustensilsListArray = createUstensilsArray(
-          arrayListButton,
-          ustensilsListArray
-        );
-
-        arrayListButton = recipes[i].getAttribute('ingredients').split(',');
-        ingredientsListArray = createIngredientsArray(
-          arrayListButton,
-          ingredientsListArray
-        );
-      } else {
-        //Don't show recipes that doesn't match
-        recipes[i].style.display = 'none';
-        nbrCardNone += 1;
-      }
-    }
-
-    console.log('-------------------> recipes.length', recipes.length);
-  } else if (words.length < 3) {
-    console.log('-------------------> words.length < 3');
+    creationListing = creatingButtonListing(recipes, words, nbrCardNone);
+    // Generation of the new tag listing
+    generateNewTagListing(
+      creationListing.appliancesListArray,
+      creationListing.ustensilsListArray,
+      creationListing.ingredientsListArray
+    );
+  } else if (words.length < 3 && nbrTagSelected === 0) {
+    console.log('==================>Test ');
     // show all cards
     const recipesList = document.getElementById('recipesList');
     recipesList.innerHTML = '';
     const recipesAll = new Recipes();
-    // console.log('dataFetch', dataFetch);
     recipesAll.displayData(dataFetch);
 
-    for (let i = 0; i < recipes.length; i++) {
-      if (recipes[i].textContent.toLowerCase().includes(words.toLowerCase())) {
-        //Show the recipes that match
-        recipes[i].style.display = 'block';
-        arrayListButton = recipes[i].getAttribute('appliance').split(',');
-        appliancesListArray = createAppliancesArray(
-          arrayListButton,
-          appliancesListArray
-        );
-
-        arrayListButton = recipes[i].getAttribute('ustensils').split(',');
-        ustensilsListArray = createUstensilsArray(
-          arrayListButton,
-          ustensilsListArray
-        );
-
-        arrayListButton = recipes[i].getAttribute('ingredients').split(',');
-        ingredientsListArray = createIngredientsArray(
-          arrayListButton,
-          ingredientsListArray
-        );
-      } else {
-        console.log('<<<< coucou tag delete +++++');
-        //Filter the cards if no tagsSelected
-        //Don't show recipes that doesn't match
-        recipes[i].style.display = 'none';
-        nbrCardNone += 1;
-      }
-    }
-    console.log('-------------------> recipes.length', recipes.length);
+    //Check if there is still not a tag selected
+    creationListing = creatingButtonListing(recipes, words, nbrCardNone);
+    // Generation of the new tag listing
+    generateNewTagListing(
+      creationListing.appliancesListArray,
+      creationListing.ustensilsListArray,
+      creationListing.ingredientsListArray
+    );
   }
-
+  console.log('==================>creationListing ', creationListing);
   // Show message that no card were found
-  noCardFound(recipes, nbrCardNone);
+  nbrCardNone = creationListing.nbrCardNone;
+  noCardFound(nbrCardNone);
 
-  // Generation of the new tag listing
-  generateNewTagListing(
-    appliancesListArray,
-    ustensilsListArray,
-    ingredientsListArray
-  );
   // Tag launch
-  taglaunch(nbrTagSelected);
+  taglaunch();
   console.log('searchBarlaunch in filterSearchBarElements');
 }
 
@@ -120,6 +85,7 @@ export function generateNewTagListing(
   ustensilsListArray,
   ingredientsListArray
 ) {
+  console.log('==================>appliancesListArray ', appliancesListArray);
   document.querySelectorAll('.buttonBarSearch').forEach((button) => {
     const buttonName = button.getAttribute('name');
     let finalList = '';
@@ -144,10 +110,12 @@ export function generateNewTagListing(
   });
 }
 
-function noCardFound(recipes, nbrCardNone) {
+function noCardFound(nbrCardNone) {
   const cardNotFound = document.querySelector('.card__not_found');
+  const recipeCard = document.querySelectorAll('.recipeCard');
 
-  if (nbrCardNone === recipes.length) {
+  //if there is no more card to show then show error message
+  if (nbrCardNone === recipeCard.length) {
     cardNotFound.innerText = `Oups, il n'y a aucune recette correspondante. Pourtant nous avons des recettes au thon, à la coco aux pommes etc....`;
   } else {
     cardNotFound.innerText = ``;
@@ -176,5 +144,57 @@ function createIngredientsArray(arrayListButton, ingredientsListArray) {
   }
   return ingredientsListArray;
 }
+
+//Creation of a listing for button if word entered in searchBar match
+function creatingButtonListing(recipes, words, nbrCardNone) {
+  let arrayListButton = [];
+  let ustensilsListArray = [];
+  let ingredientsListArray = [];
+  let appliancesListArray = [];
+
+  for (let i = 0; i < recipes.length; i++) {
+    if (recipes[i].textContent.toLowerCase().includes(words.toLowerCase())) {
+      //Show the recipes that match
+      recipes[i].style.display = 'block';
+
+      //Create the listing for the button with the card that matches
+      arrayListButton = recipes[i].getAttribute('appliance').split(',');
+      appliancesListArray = createAppliancesArray(
+        arrayListButton,
+        appliancesListArray
+      );
+
+      arrayListButton = recipes[i].getAttribute('ustensils').split(',');
+      ustensilsListArray = createUstensilsArray(
+        arrayListButton,
+        ustensilsListArray
+      );
+
+      arrayListButton = recipes[i].getAttribute('ingredients').split(',');
+      ingredientsListArray = createIngredientsArray(
+        arrayListButton,
+        ingredientsListArray
+      );
+    } else {
+      //Don't show recipes that doesn't match
+      recipes[i].style.display = 'none';
+      nbrCardNone += 1;
+    }
+  }
+  return {
+    appliancesListArray,
+    ustensilsListArray,
+    ingredientsListArray,
+    nbrCardNone,
+  };
+}
+
+function countNbrTagSelected() {
+  const tagsSelected = document.querySelectorAll(`.tagSelected`);
+  console.log('nbrTagSelected in getTagInArrays', tagsSelected.length);
+
+  return tagsSelected.length;
+}
+
 console.log('searchBarlaunch in filterSearchBarElements');
 searchBarlaunch();
