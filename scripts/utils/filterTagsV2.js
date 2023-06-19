@@ -1,7 +1,7 @@
 import { dataFetch } from '../pages/meal.js';
 import { wordSEARCHBAR } from '../utils/filterSearchBar.js';
 
-export function getTagInArrays(nbrTagSelected) {
+export function getTagInArrays() {
   const arrayIngredientsSelected = [];
   const arrayUstensilsSelected = [];
   const arrayAppareilsSelected = [];
@@ -22,18 +22,18 @@ export function getTagInArrays(nbrTagSelected) {
   console.log('Ingrédients', arrayIngredientsSelected);
   console.log('Appareils', arrayAppareilsSelected);
   console.log('Ustensils', arrayUstensilsSelected);
-  nbrTagSelected += tagsSelected.length;
-  console.log('nbrTagSelected in getTagInArrays', nbrTagSelected);
+  // nbrTagSelected += tagsSelected.length;
+  // console.log('nbrTagSelected in getTagInArrays', nbrTagSelected);
 
   return {
     arrayIngredientsSelected,
     arrayAppareilsSelected,
     arrayUstensilsSelected,
-    nbrTagSelected,
+    // nbrTagSelected,
   };
 }
 
-export function filterResult(ingredients, appareils, ustensils) {
+export function filterResult(ingredients, appareils, ustensils, wordSEARCHBAR) {
   const recipesContainer = document.querySelector('#recipesList');
   recipesContainer.innerHTML = '';
   let result = dataFetch;
