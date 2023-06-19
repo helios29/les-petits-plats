@@ -73,8 +73,8 @@ function tagDelete(arrayTag, nbrTagSelected, buttonName) {
   });
 }
 
-export function taglaunch() {
-  let tagSelected = this;
+export function taglaunch(event) {
+  let tagSelected = event.target;
   console.log('tagSelected', tagSelected);
   const buttonName = tagSelected.dataset.tag;
   console.log('buttonName', buttonName);
@@ -117,7 +117,7 @@ export function filteringPreparation(wordSEARCHBAR) {
   // Avoid double click on tags
   tagInClickedClass(ingredients, appareils, ustensils);
 
-  //Add eventListener
+  //Add eventListener after reconstruction of the list
   document.querySelectorAll('.choice li').forEach((choice) => {
     choice.addEventListener('click', taglaunch);
   });
@@ -189,7 +189,12 @@ function filteringResult(tagsSelectedInArray, wordSEARCHBAR) {
   const ingredients = tagsSelectedInArray.arrayIngredientsSelected;
   const appareils = tagsSelectedInArray.arrayAppareilsSelected;
   const ustensils = tagsSelectedInArray.arrayUstensilsSelected;
-  const results = filterResult(ingredients, appareils, ustensils, wordSEARCHBAR);
+  const results = filterResult(
+    ingredients,
+    appareils,
+    ustensils,
+    wordSEARCHBAR
+  );
 
   const recipesCard = new Recipes();
   recipesCard.displayData(results);
