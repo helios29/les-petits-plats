@@ -51,6 +51,7 @@ export class ButtonFilter extends Recipes {
     return uniquelist.sort();
   }
 
+  //Display list to the button and append it
   displaylist(finalList, listButton) {
     const buttonList = document.querySelector(`.${listButton}Tag`);
     

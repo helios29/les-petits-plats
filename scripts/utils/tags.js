@@ -42,31 +42,19 @@ function showTagButton(tagSelected, buttonName) {
   }
 }
 
-function tagclose(e, buttonName) {
-  //Remove tag from screen
-  e.remove();
-  console.log('e', e.innerText);
-  console.log('buttonName', buttonName);
-  console.log('tagSelected', tagSelected);
-  const classToChange = document.querySelector(`.choice .${buttonName}Tag `);
-  // tagSelected.className = 'notClicked';
-}
 
-function tagDelete(arrayTag, nbrTagSelected, buttonName) {
+function tagDelete(arrayTag, nbrTagSelected) {
+  console.log('-----------------------------------------# coucou de tagDelete');
   console.log('coucou de tagDelete - arrayTag', arrayTag);
   arrayTag.forEach((tag) => {
     tag.addEventListener('click', (e) => {
-      console.log('e', e.currentTarget);
-      console.log('arrayTag.length', arrayTag.length);
 
       //Remove tag from screen
-      tagclose(e.currentTarget, buttonName);
-
-      filteringPreparation();
+      e.currentTarget.remove();
 
       const recipes = document.querySelectorAll('.recipeCard');
       filterSearchBarElements(wordSEARCHBAR, recipes, nbrTagSelected);
-      taglaunch(nbrTagSelected);
+
       console.log('searchBarlaunch in tag delete');
       searchBarlaunch();
     });
@@ -74,19 +62,20 @@ function tagDelete(arrayTag, nbrTagSelected, buttonName) {
 }
 
 export function taglaunch(event) {
+  console.log(
+    '-----------------------------------------# coucou tag launch - tagSelected'
+  );
   let tagSelected = event.target;
   console.log('tagSelected', tagSelected);
   const buttonName = tagSelected.dataset.tag;
   console.log('buttonName', buttonName);
+
   //Show tag button on the screen
   showTagButton(tagSelected, buttonName);
   console.log('arrayTags', arrayTag);
 
   filteringPreparation(wordSEARCHBAR);
-} //);
-//   });
-
-// }
+}
 
 export function filteringPreparation(wordSEARCHBAR) {
   //Put tags in arrays for filtering
@@ -117,10 +106,6 @@ export function filteringPreparation(wordSEARCHBAR) {
   // Avoid double click on tags
   tagInClickedClass(ingredients, appareils, ustensils);
 
-  //Add eventListener after reconstruction of the list
-  document.querySelectorAll('.choice li').forEach((choice) => {
-    choice.addEventListener('click', taglaunch);
-  });
 }
 
 export function preparationButtonListing(nbrCardNone) {
@@ -242,7 +227,3 @@ function tagInClickedClass(ingredients, appareils, ustensils) {
     });
   }
 }
-
-// Lauch tag if no word enter in searchBar
-console.log('taglaunch in tags');
-// taglaunch();

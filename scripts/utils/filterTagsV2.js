@@ -1,5 +1,4 @@
 import { dataFetch } from '../pages/meal.js';
-import { wordSEARCHBAR } from '../utils/filterSearchBar.js';
 
 export function getTagInArrays() {
   const arrayIngredientsSelected = [];
