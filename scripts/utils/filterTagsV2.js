@@ -17,7 +17,6 @@ export function getTagInArrays() {
     } else if (buttonName === 'ustensils') {
       arrayUstensilsSelected.push(elementSelected);
     }
-  
   }
 
   console.log('Ingrédients', arrayIngredientsSelected);
@@ -51,13 +50,9 @@ export function filterResult(ingredients, appareils, ustensils, wordSEARCHBAR) {
   }
 
   if (ingredients && ingredients.length > 0) {
-
     for (let i = 0; i < ingredients.length; i++) {
-      console.log('recipe', recipe);
       result = result.filter((recipe) =>
-
-      
-        recipe.ingredients[i].some((ingredient) =>
+        recipe.ingredients.some((ingredient) =>
           ingredient.ingredient
             .toLowerCase()
             .includes(ingredients[i].toLowerCase())
@@ -71,13 +66,13 @@ export function filterResult(ingredients, appareils, ustensils, wordSEARCHBAR) {
   }
 
   if (ustensils && ustensils.length > 0) {
-    ustensils.forEach((_ustensil) => {
+    for (let i = 0; i < ustensils.length; i++) {
       result = result.filter((recipe) =>
         recipe.ustensils.some((ustensil) =>
-          ustensil.toLowerCase().includes(_ustensil.toLowerCase())
+          ustensil.toLowerCase().includes(ustensil[i].toLowerCase())
         )
       );
-    });
+    }
   }
 
   return result;

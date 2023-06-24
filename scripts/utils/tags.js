@@ -115,27 +115,27 @@ export function preparationButtonListing(nbrCardNone) {
   let ingredientsListArray = [];
   let appliancesListArray = [];
 
-  recipesCards.forEach((recipeCard) => {
+  for (let j = 0; j < recipesCards.length; j++) {
     //Create the listing for the button with the card that matches
-    arrayListButton = recipeCard.getAttribute('appliance').split(',');
+    arrayListButton = recipesCards[j].getAttribute('appliance').split(',');
     appliancesListArray = createAppliancesArray(
       arrayListButton,
       appliancesListArray
     );
 
-    arrayListButton = recipeCard.getAttribute('ustensils').split(',');
+    arrayListButton = recipesCards[j].getAttribute('ustensils').split(',');
     ustensilsListArray = createUstensilsArray(
       arrayListButton,
       ustensilsListArray
     );
 
-    arrayListButton = recipeCard.getAttribute('ingredients').split(',');
+    arrayListButton = recipesCards[j].getAttribute('ingredients').split(',');
     ingredientsListArray = createIngredientsArray(
       arrayListButton,
       ingredientsListArray
     );
     nbrCardNone += 1;
-  });
+  }
   console.log('ingredientsListArray', ingredientsListArray);
   console.log('nbrCardNone', nbrCardNone);
   return {
@@ -195,34 +195,34 @@ function filteringResult(tagsSelectedInArray, wordSEARCHBAR) {
 function tagInClickedClass(ingredients, appareils, ustensils) {
   if (ingredients && ingredients.length > 0) {
     const ingredientsLi = document.querySelectorAll('.ingredientsTag li');
-    ingredients.forEach((ingredient) => {
-      ingredientsLi.forEach((ingredientLi) => {
-        if (ingredient === ingredientLi.innerText) {
-          ingredientLi.className = 'Clicked';
+    for (let j = 0; j < ingredients.length; j++) {
+      for (let i = 0; i < ingredientsLi.length; i++) {
+        if (ingredients[j] === ingredientsLi[i].innerText) {
+          ingredientsLi[i].className = 'Clicked';
         }
-      });
-    });
+      }
+    }
   }
 
   if (appareils && appareils.length > 0) {
     const appareilsLi = document.querySelectorAll('.appliancesTag li');
-    appareils.forEach((appareil) => {
-      appareilsLi.forEach((appareilLi) => {
-        if (appareil === appareilLi.innerText) {
-          appareilLi.className = 'Clicked';
+    for (let j = 0; j < appareils.length; j++) {
+      for (let i = 0; i < appareilsLi.length; i++) {
+        if (appareils[j] === appareilsLi[i].innerText) {
+          appareilsLi[i].className = 'Clicked';
         }
-      });
-    });
+      }
+    }
   }
 
   if (ustensils && ustensils.length > 0) {
     const ustensilsLi = document.querySelectorAll('.ustensilsTag li');
-    ustensils.forEach((ustensil) => {
-      ustensilsLi.forEach((ustensilLi) => {
-        if (ustensil === ustensilLi.innerText) {
-          ustensilLi.className = 'Clicked';
+    for (let j = 0; j < ustensils.length; j++) {
+      for (let i = 0; i < ustensilsLi.length; i++) {
+        if (ustensils[j] === ustensilsLi[i].innerText) {
+          ustensilsLi[i].className = 'Clicked';
         }
-      });
-    });
+      }
+    }
   }
 }
