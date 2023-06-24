@@ -22,12 +22,6 @@ export class Recipes {
       const userCardDOM = recipeModel.getUserCardDOM();
       recipesList.appendChild(userCardDOM);
     }
-
-    // recipes.forEach((recipe) => {
-    //   const recipeModel = receipeFactory(recipe);
-    //   const userCardDOM = recipeModel.getUserCardDOM();
-    //   recipesList.appendChild(userCardDOM);
-    // });
   }
 }
 

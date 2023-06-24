@@ -26,7 +26,7 @@ export class ButtonFilter extends Recipes {
       const listDevices = [];
 
       for (let i = 0; i < recipes.length; i++) {
-        listDevices.push(recipes[i].appliance)
+        listDevices.push(recipes[i].appliance);
       }
       return buttonFilter.createUniqueList(listDevices);
     }
@@ -36,7 +36,7 @@ export class ButtonFilter extends Recipes {
       for (let i = 0; i < recipes.length; i++) {
         const ustensilRecipes = recipes[i].ustensils;
         for (let j = 0; j < ustensilRecipes.length; j++) {
-          listUstensils.push(ustensilRecipes[i]);
+          listUstensils.push(ustensilRecipes[j]);
         }
       }
       return buttonFilter.createUniqueList(listUstensils);
@@ -94,7 +94,7 @@ export class ButtonFilter extends Recipes {
 }
 
 // listener on the button
-const buttonBarSearch = document.querySelectorAll('.buttonBarSearch')
+const buttonBarSearch = document.querySelectorAll('.buttonBarSearch');
 for (let i = 0; i < buttonBarSearch.length; i++) {
   buttonBarSearch[i].addEventListener('click', (e) => {
     e.preventDefault();
