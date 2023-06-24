@@ -24,20 +24,21 @@ export class ButtonFilter extends Recipes {
     }
     if (buttonName === 'appliances') {
       const listDevices = [];
-      recipes.forEach((recipe) => listDevices.push(recipe.appliance));
 
+      for (let i = 0; i < recipes.length; i++) {
+        listDevices.push(recipes[i].appliance)
+      }
       return buttonFilter.createUniqueList(listDevices);
     }
     if (buttonName === 'ustensils') {
       const listUstensils = [];
 
-      recipes.forEach((recipe) => {
-        const ustensilRecipes = recipe.ustensils;
-
-        ustensilRecipes.forEach((ustensilRecipe) => {
-          listUstensils.push(ustensilRecipe);
-        });
-      });
+      for (let i = 0; i < recipes.length; i++) {
+        const ustensilRecipes = recipes[i].ustensils;
+        for (let j = 0; j < ustensilRecipes.length; j++) {
+          listUstensils.push(ustensilRecipes[i]);
+        }
+      }
       return buttonFilter.createUniqueList(listUstensils);
     }
   }
@@ -51,10 +52,10 @@ export class ButtonFilter extends Recipes {
   displaylist(finalList, listButton) {
     const buttonList = document.querySelector(`.${listButton}Tag`);
 
-    finalList.forEach((list) => {
-      const buttonModel = buttonFactory(list, listButton);
+    for (let i = 0; i < finalList.length; i++) {
+      const buttonModel = buttonFactory(finalList[i], listButton);
       buttonList.appendChild(buttonModel);
-    });
+    }
   }
 
   displayTitleButton(title) {
@@ -93,19 +94,20 @@ export class ButtonFilter extends Recipes {
 }
 
 // listener on the button
-document.querySelectorAll('.buttonBarSearch').forEach((button) => {
-  button.addEventListener('click', (e) => {
+const buttonBarSearch = document.querySelectorAll('.buttonBarSearch')
+for (let i = 0; i < buttonBarSearch.length; i++) {
+  buttonBarSearch[i].addEventListener('click', (e) => {
     e.preventDefault();
     buttonFilter.showList(e.currentTarget.id);
   });
-});
+}
 
 export const displayTagList = (buttonFilter) => {
   const listButtons = ['ingredients', 'appliances', 'ustensils'];
-  listButtons.forEach((listButton) => {
-    const finalList = buttonFilter.createListElement(dataFetch, listButton);
-    buttonFilter.displaylist(finalList, listButton);
-  });
+  for (let i = 0; i < listButtons.length; i++) {
+    const finalList = buttonFilter.createListElement(dataFetch, listButtons[i]);
+    buttonFilter.displaylist(finalList, listButtons[i]);
+  }
 };
 
 const buttonFilter = new ButtonFilter(dataFetch);

@@ -6,9 +6,9 @@ export function getTagInArrays() {
   const arrayAppareilsSelected = [];
   const tagsSelected = document.querySelectorAll(`.tagSelected`);
 
-  tagsSelected.forEach((tagSelected) => {
-    const elementSelected = tagSelected.innerText;
-    const buttonName = tagSelected.dataset.tag;
+  for (let i = 0; i < tagsSelected.length; i++) {
+    const elementSelected = tagsSelected[i].innerText;
+    const buttonName = tagsSelected[i].dataset.tag;
 
     if (buttonName === 'ingredients') {
       arrayIngredientsSelected.push(elementSelected);
@@ -17,7 +17,9 @@ export function getTagInArrays() {
     } else if (buttonName === 'ustensils') {
       arrayUstensilsSelected.push(elementSelected);
     }
-  });
+  
+  }
+
   console.log('Ingrédients', arrayIngredientsSelected);
   console.log('Appareils', arrayAppareilsSelected);
   console.log('Ustensils', arrayUstensilsSelected);
@@ -49,15 +51,19 @@ export function filterResult(ingredients, appareils, ustensils, wordSEARCHBAR) {
   }
 
   if (ingredients && ingredients.length > 0) {
-    ingredients.forEach((_ingredient) => {
+
+    for (let i = 0; i < ingredients.length; i++) {
+      console.log('recipe', recipe);
       result = result.filter((recipe) =>
-        recipe.ingredients.some((ingredient) =>
+
+      
+        recipe.ingredients[i].some((ingredient) =>
           ingredient.ingredient
             .toLowerCase()
-            .includes(_ingredient.toLowerCase())
+            .includes(ingredients[i].toLowerCase())
         )
       );
-    });
+    }
   }
 
   if (appareils && appareils.length > 0) {

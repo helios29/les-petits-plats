@@ -28,9 +28,10 @@ export function generateNewTagListing(
   ustensilsListArray,
   ingredientsListArray
 ) {
-  console.log('==================>appliancesListArray ', appliancesListArray);
-  document.querySelectorAll('.buttonBarSearch').forEach((button) => {
-    const buttonName = button.getAttribute('name');
+  const buttonBarSearch = document.querySelectorAll('.buttonBarSearch');
+
+  for (let i = 0; i < buttonBarSearch.length; i++) {
+    const buttonName = buttonBarSearch[i].getAttribute('name');
     let finalList = '';
 
     // Delete previous list and generate the filtered one
@@ -50,7 +51,7 @@ export function generateNewTagListing(
       finalList = ustensilsListArray;
     }
     buttonFilter.displaylist(finalList, buttonName);
-  });
+  }
 }
 
 function noCardFound() {
