@@ -17,11 +17,17 @@ export class Recipes {
   displayData(recipes) {
     const recipesList = document.querySelector('#recipesList');
 
-    recipes.forEach((recipe) => {
-      const recipeModel = receipeFactory(recipe);
+    for(let i = 0; i < recipes.length; i ++){
+      const recipeModel = receipeFactory(recipes[i]);
       const userCardDOM = recipeModel.getUserCardDOM();
       recipesList.appendChild(userCardDOM);
-    });
+    }
+
+    // recipes.forEach((recipe) => {
+    //   const recipeModel = receipeFactory(recipe);
+    //   const userCardDOM = recipeModel.getUserCardDOM();
+    //   recipesList.appendChild(userCardDOM);
+    // });
   }
 }
 

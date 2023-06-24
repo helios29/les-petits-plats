@@ -2,8 +2,6 @@ import { buttonFactory } from '../factories/buttonFactory.js';
 import { Recipes } from '../pages/meal.js';
 import { dataFetch } from '../pages/meal.js';
 
-
-
 export class ButtonFilter extends Recipes {
   constructor(data, buttonElement) {
     super(data);
@@ -11,19 +9,17 @@ export class ButtonFilter extends Recipes {
   }
 
   createListElement(recipes, listButton) {
-
     const buttonName = listButton;
 
     if (buttonName === 'ingredients') {
       const listIngredients = [];
 
-      recipes.forEach((recipe) => {
-        const ingredientRecipes = recipe.ingredients;
-
-        ingredientRecipes.forEach((ingredientRecipe) => {
-          listIngredients.push(ingredientRecipe.ingredient);
-        });
-      });
+      for (let i = 0; i < recipes.length; i++) {
+        const ingredientRecipes = recipes[i].ingredients;
+        for (let j = 0; j < ingredientRecipes.length; j++) {
+          listIngredients.push(ingredientRecipes[j].ingredient);
+        }
+      }
       return buttonFilter.createUniqueList(listIngredients);
     }
     if (buttonName === 'appliances') {
@@ -54,7 +50,7 @@ export class ButtonFilter extends Recipes {
   //Display list to the button and append it
   displaylist(finalList, listButton) {
     const buttonList = document.querySelector(`.${listButton}Tag`);
-    
+
     finalList.forEach((list) => {
       const buttonModel = buttonFactory(list, listButton);
       buttonList.appendChild(buttonModel);
