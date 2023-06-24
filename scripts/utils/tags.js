@@ -8,6 +8,8 @@ import { searchBarlaunch } from '../utils/filterSearchBar.js';
 import { countNbrTagSelected } from '../utils/filterSearchBar.js';
 import { generateNewTagListing } from '../utils/filterSearchBar.js';
 
+//test
+
 let arrayTag = [];
 export let buttonName = '';
 export let tagSelected = '';
@@ -42,13 +44,11 @@ function showTagButton(tagSelected, buttonName) {
   }
 }
 
-
 function tagDelete(arrayTag, nbrTagSelected) {
   console.log('-----------------------------------------# coucou de tagDelete');
   console.log('coucou de tagDelete - arrayTag', arrayTag);
   arrayTag.forEach((tag) => {
     tag.addEventListener('click', (e) => {
-
       //Remove tag from screen
       e.currentTarget.remove();
 
@@ -105,7 +105,6 @@ export function filteringPreparation(wordSEARCHBAR) {
 
   // Avoid double click on tags
   tagInClickedClass(ingredients, appareils, ustensils);
-
 }
 
 export function preparationButtonListing(nbrCardNone) {
