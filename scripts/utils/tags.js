@@ -44,8 +44,7 @@ function showTagButton(tagSelected, buttonName) {
 
 
 function tagDelete(arrayTag, nbrTagSelected) {
-  console.log('-----------------------------------------# coucou de tagDelete');
-  console.log('coucou de tagDelete - arrayTag', arrayTag);
+
   arrayTag.forEach((tag) => {
     tag.addEventListener('click', (e) => {
 
@@ -62,9 +61,7 @@ function tagDelete(arrayTag, nbrTagSelected) {
 }
 
 export function taglaunch(event) {
-  console.log(
-    '-----------------------------------------# coucou tag launch - tagSelected'
-  );
+
   let tagSelected = event.target;
   console.log('tagSelected', tagSelected);
   const buttonName = tagSelected.dataset.tag;
@@ -86,7 +83,6 @@ export function filteringPreparation(wordSEARCHBAR) {
   let nbrCardNone = 0;
 
   const nbrTagSelected = countNbrTagSelected();
-  console.log('nbrTagSelected', nbrTagSelected);
 
   //Filtering the results
   filteringResult(tagsSelectedInArray, wordSEARCHBAR);
@@ -137,8 +133,7 @@ export function preparationButtonListing(nbrCardNone) {
     );
     nbrCardNone += 1;
   });
-  console.log('ingredientsListArray', ingredientsListArray);
-  console.log('nbrCardNone', nbrCardNone);
+ 
   return {
     appliancesListArray,
     ustensilsListArray,

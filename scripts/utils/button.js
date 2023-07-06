@@ -10,6 +10,7 @@ export class ButtonFilter extends Recipes {
     this.buttonElement = buttonElement;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   createListElement(recipes, listButton) {
 
     const buttonName = listButton;

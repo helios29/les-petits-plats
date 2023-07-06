@@ -1,5 +1,3 @@
-/* eslint-disable class-methods-use-this */
-// eslint-disable-next-line max-classes-per-file
 import { receipeFactory } from '../factories/mealFactory.js';
 
 export class Recipes {

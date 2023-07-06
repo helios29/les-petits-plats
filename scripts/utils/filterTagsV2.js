@@ -18,17 +18,12 @@ export function getTagInArrays() {
       arrayUstensilsSelected.push(elementSelected);
     }
   });
-  console.log('Ingrédients', arrayIngredientsSelected);
-  console.log('Appareils', arrayAppareilsSelected);
-  console.log('Ustensils', arrayUstensilsSelected);
-  // nbrTagSelected += tagsSelected.length;
-  // console.log('nbrTagSelected in getTagInArrays', nbrTagSelected);
+
 
   return {
     arrayIngredientsSelected,
     arrayAppareilsSelected,
     arrayUstensilsSelected,
-    // nbrTagSelected,
   };
 }
 

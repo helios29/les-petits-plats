@@ -10,7 +10,10 @@
     "ecmaVersion": "latest"
   },
   "rules": {
+    "no-param-reassign": "off",
+    "no-use-before-define": "off",
     "prettier/prettier": "error",
+    "ignoreExternal": true,
     "import/prefer-default-export": "off"
   }
 }
