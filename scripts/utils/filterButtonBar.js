@@ -1,3 +1,4 @@
+// Update button listing
 function filterElementsButton(words, wordChoice) {
   for (let i = 0; i < wordChoice.length; i += 1) {
     if (wordChoice[i].textContent.toLowerCase().includes(words)) {
@@ -8,7 +9,7 @@ function filterElementsButton(words, wordChoice) {
   }
 }
 
-// // ButtonBAR EVENT
+// ButtonBAR EVENT
 document.querySelectorAll('.buttonBarSearch').forEach((buttonBar) => {
   buttonBar.addEventListener('keyup', (e) => {
     const wordButtonBAR = e.target.value;

@@ -10,7 +10,6 @@ export class ButtonFilter extends Recipes {
     this.buttonElement = buttonElement;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   createListElement(recipes, listButton) {
 
     const buttonName = listButton;
@@ -52,7 +51,7 @@ export class ButtonFilter extends Recipes {
     return uniquelist.sort();
   }
 
-  //Display list to the button and append it
+  // Display list to the button and append it
   displaylist(finalList, listButton) {
     const buttonList = document.querySelector(`.${listButton}Tag`);
     
